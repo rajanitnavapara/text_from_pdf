@@ -1,0 +1,30 @@
+#importing required module 
+from pathlib import Path
+from PyPDF2 import PdfFileReader
+
+#define function 
+def text_from_pdf(pdf_path):
+	
+  #get the pdf from given path
+	pdf_reader = PdfFileReader(str(pdf_path))
+
+  #counting pages of pdf
+	num_pages = pdf_reader.getNumPages()
+	print(f"This PDF contains {num_pages} pages.")
+	count = int(input("How many page do you want :"))
+	
+  #create a null list in which all text will be added.
+	text_of_pdf = []
+  
+  #loop for get text from all pages
+	for i in range(count):
+	
+		first_page = pdf_reader.getPage(i)
+		text = i+1, first_page.extractText() 
+		text_of_pdf.append(text)
+	
+	return print(text_of_pdf)
+
+#for get the pdf path
+pdf_path = input("Paste here path of pdf :")	
+text_from_pdf(pdf_path)
